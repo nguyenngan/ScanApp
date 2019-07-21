@@ -37,7 +37,7 @@ public class LoginAct extends AbsActivity {
     }
 
     @Override
-    protected void initializeLayout(@Nullable Bundle savedInstanceState) {
+    protected void initializeLayout() {
 
     }
 }

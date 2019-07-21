@@ -40,7 +40,7 @@ public class MainAct extends AbsActivity {
     }
 
     @Override
-    protected void initializeLayout(@Nullable Bundle savedInstanceState) {
+    protected void initializeLayout() {
         binding.scanBt.setOnClickListener(v -> navigateScanBarcode());
     }
 
