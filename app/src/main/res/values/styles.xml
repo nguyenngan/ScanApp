@@ -1,0 +1,88 @@
+<!--
+  ~ Copyright (c).
+  ~ TT-Technologies IT-Service GmbH
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Halo">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Halo.Wrapper">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">#ffffff</item>
+        <!--
+        Why would I want to fitsSystemWindows?
+        https://medium.com/google-developers/why-would-i-want-to-fitssystemwindows-4e26d9ce1eec
+        -->
+        <item name="android:fitsSystemWindows">true</item>
+        <!-- Cancel focus edittext when create layout -->
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+    </style>
+
+    <!--
+    The top app bar displays information and actions relating to the current screen.
+    - Material Design guidelines: Top App Bar
+    https://material.io/go/design-app-bar-top
+
+    - Material Design guidelines: Scrolling techniques
+    https://material.io/go/design-app-bar-top#behavior
+
+    - AppBarLayout is a ViewGroup, most commonly used to wrap a Toolbar,
+    that provides many of the Material Design features and interactions for Top App Bars,
+    namely responsiveness to scrolling.
+    https://material.io/develop/android/components/app-bar-layout/
+    -->
+    <style name="Halo.AppBarLayout" parent="Widget.Design.AppBarLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="Halo.Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?actionBarSize</item>
+        <item name="android:background">?colorPrimary</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+
+    </style>
+
+    <style name="Halo.Toolbar.Trasparent" parent="Widget.AppCompat.Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?actionBarSize</item>
+        <item name="android:background">#00ffffff</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+    </style>
+
+    <style name="Halo.ToolbarWhite" parent="Widget.AppCompat.Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?actionBarSize</item>
+        <item name="android:background">#ffffff</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+    </style>
+
+    <style name="Halo.CollapsingToolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?actionBarSize</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="full_screen_dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+</resources>

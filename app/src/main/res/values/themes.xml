@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c).
+  ~ TT-Technologies IT-Service GmbH
+  -->
+
+<resources>
+
+    <!--
+    ~ The color system
+    ~ The Material Design color system can be used to create a color theme that reflects your brand or style.
+    ~ https://material.io/design/color/the-color-system.html#
+    ~
+    ~ COLOR TOOL
+    ~ Create, share, and apply color palettes to your UI, as well as measure the accessibility level of any color combination.
+    ~ https://material.io/tools/color/#!/?view.left=0&view.right=0
+    -->
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowActionBar">false</item>
+    </style>
+</resources>
