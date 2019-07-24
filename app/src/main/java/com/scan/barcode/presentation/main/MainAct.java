@@ -10,8 +10,6 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.scan.barcode.R;
@@ -42,6 +40,7 @@ public class MainAct extends AbsActivity {
     @Override
     protected void initializeLayout() {
         binding.scanBt.setOnClickListener(v -> navigateScanBarcode());
+        binding.updateBt.setOnClickListener(v -> viewModel.syncData());
     }
 
     private void navigateScanBarcode() {

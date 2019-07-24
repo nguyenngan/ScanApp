@@ -7,6 +7,8 @@ package com.scan.barcode.presentation.qr1st;
 
 import android.arch.lifecycle.ViewModel;
 
+import com.scan.barcode.data.entities.Data;
+import com.scan.barcode.data.repository.data.DataRepository;
 import com.scan.barcode.data.repository.user.UserRepository;
 
 import javax.inject.Inject;
@@ -19,9 +21,16 @@ import javax.inject.Inject;
 public class Qr1stViewModel extends ViewModel {
 
     private final UserRepository userRepository;
+    private final DataRepository dataRepository;
 
     @Inject
-    Qr1stViewModel(UserRepository userRepository) {
+    Qr1stViewModel(UserRepository userRepository,
+                   DataRepository dataRepository) {
         this.userRepository = userRepository;
+        this.dataRepository = dataRepository;
+    }
+
+    public void insertData(Data data) {
+        dataRepository.insertData(data);
     }
 }

@@ -24,4 +24,8 @@ public class MainViewModel extends ViewModel {
     MainViewModel(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
+    public void syncData() {
+
+    }
 }
