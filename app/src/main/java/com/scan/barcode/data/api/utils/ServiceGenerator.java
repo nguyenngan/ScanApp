@@ -23,14 +23,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceGenerator {
 
-    public static final String HOST = "http://example.com";
+    private static final boolean release = false;
+
+    public static final String HOST = "http://regx-test.entwurfsansicht.de";
+    public static final String HOST_DEV = "http://regx-test.entwurfsansicht.de";
 
     private static Gson gson = new GsonBuilder()
             .setDateFormat("yyyy-MM-dd")
             .create();
 
     private static Retrofit.Builder builder = new Retrofit.Builder()
-            .baseUrl(HOST)
+            .baseUrl(release ? HOST : HOST_DEV)
             .addCallAdapterFactory(new LiveDataCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create(gson));
 

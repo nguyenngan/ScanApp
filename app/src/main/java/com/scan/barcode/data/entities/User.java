@@ -10,6 +10,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
+import com.google.common.base.Objects;
+
 @Entity(primaryKeys = "username")
 public class User implements Parcelable {
 
@@ -31,6 +33,11 @@ public class User implements Parcelable {
     public User() {
     }
 
+    public User(@NonNull String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     protected User(Parcel in) {
         this.username = in.readString();
         this.password = in.readString();
@@ -47,4 +54,26 @@ public class User implements Parcelable {
             return new User[size];
         }
     };
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equal(username, user.username) &&
+                Objects.equal(password, user.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(username, password);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

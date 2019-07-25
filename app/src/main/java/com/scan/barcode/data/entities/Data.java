@@ -9,13 +9,16 @@ import android.arch.persistence.room.Entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
-@Entity(primaryKeys = "username")
+import org.jetbrains.annotations.NotNull;
+
+@Entity(primaryKeys = "barcode")
 public class Data implements Parcelable {
 
+    private String username;
     @NonNull
-    private String username = "";
-    private String barcode;
+    private String barcode = "";
     private String qr1St;
     private String qr2nd;
     // Format time "EEE, d MMM yyyy HH:mm:ss"	Wed, 4 Jul 2001 12:08:56
@@ -25,7 +28,7 @@ public class Data implements Parcelable {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(@NotNull String username) {
         this.username = username;
     }
 
@@ -33,7 +36,7 @@ public class Data implements Parcelable {
         return barcode;
     }
 
-    public void setBarcode(String barcode) {
+    public void setBarcode(@NotNull String barcode) {
         this.barcode = barcode;
     }
 
@@ -59,6 +62,19 @@ public class Data implements Parcelable {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    /**
+     * When Data have all field, this is can sync to server
+     *
+     * @return true if can sync, otherwise
+     */
+    public boolean canSync() {
+        return !TextUtils.isEmpty(username)
+                && !TextUtils.isEmpty(barcode)
+                && !TextUtils.isEmpty(qr1St)
+                && !TextUtils.isEmpty(qr2nd)
+                && !TextUtils.isEmpty(time);
     }
 
     @Override

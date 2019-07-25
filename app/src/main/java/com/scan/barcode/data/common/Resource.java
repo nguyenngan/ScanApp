@@ -7,8 +7,9 @@ package com.scan.barcode.data.common;
 
 import android.support.annotation.Nullable;
 
-import static com.scan.barcode.data.common.NetworkState.Status.SUCCESS;
 import static com.scan.barcode.data.common.StatusNetwork.LOADING;
+import static com.scan.barcode.data.common.StatusNetwork.SUCCESS;
+
 
 /**
  * @param <T>

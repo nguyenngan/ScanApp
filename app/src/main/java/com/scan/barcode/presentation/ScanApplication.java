@@ -10,6 +10,7 @@ import android.support.multidex.MultiDex;
 import android.support.v7.app.AppCompatDelegate;
 
 import com.facebook.stetho.Stetho;
+import com.scan.barcode.data.entities.User;
 import com.scan.barcode.di.DaggerAppComponent;
 
 import dagger.android.AndroidInjector;
@@ -27,6 +28,8 @@ public class ScanApplication extends DaggerApplication {
     public int WIDTH_SCREEN;
     public int HEIGHT_SCREEN;
 
+    private User user;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -36,7 +39,6 @@ public class ScanApplication extends DaggerApplication {
         mInstance = this;
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
-
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -63,5 +65,13 @@ public class ScanApplication extends DaggerApplication {
         if (BuildConfig.DEBUG) {
             Stetho.initializeWithDefaults(this);
         }
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
