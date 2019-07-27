@@ -59,14 +59,21 @@ public class Qr1stAct extends AbsXZingAct {
         if (getIntent() != null) {
             data = getIntent().getParcelableExtra(ARGS);
         }
-        binding.abortBt.setOnClickListener(v -> finish());
         binding.saveBt.setOnClickListener(v -> {
             if (data != null) {
                 viewModel.insertData(data);
                 finish();
             }
         });
+
+        binding.saveBt.setOnClickListener(v -> {
+            if (data != null) {
+                viewModel.insertData(data);
+            }
+            finish();
+        });
         binding.nextBt.setOnClickListener(v -> handleResult(""));
+        binding.abortBt.setOnClickListener(v -> finish());
     }
 
     @Override
@@ -78,6 +85,7 @@ public class Qr1stAct extends AbsXZingAct {
     public void handleResult(String result) {
         if (data != null) {
             data.setQr1St(result);
+            viewModel.insertData(data);
         }
         navigateQr2nd();
         finish();
@@ -86,6 +94,7 @@ public class Qr1stAct extends AbsXZingAct {
     @Override
     protected void initActionBar() {
         setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     private void navigateQr2nd() {

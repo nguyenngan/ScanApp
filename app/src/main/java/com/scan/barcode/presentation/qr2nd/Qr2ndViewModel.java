@@ -20,13 +20,10 @@ import javax.inject.Inject;
  */
 public class Qr2ndViewModel extends ViewModel {
 
-    private final UserRepository userRepository;
     private final DataRepository dataRepository;
 
     @Inject
-    Qr2ndViewModel(UserRepository userRepository,
-                   DataRepository dataRepository) {
-        this.userRepository = userRepository;
+    Qr2ndViewModel(DataRepository dataRepository) {
         this.dataRepository = dataRepository;
     }
 

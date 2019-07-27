@@ -16,6 +16,7 @@ import com.google.zxing.ZXingScannerView;
 import com.scan.barcode.R;
 import com.scan.barcode.data.entities.Data;
 import com.scan.barcode.databinding.BarcodeActBinding;
+import com.scan.barcode.presentation.ScanApplication;
 import com.scan.barcode.presentation.common.AbsXZingAct;
 import com.scan.barcode.presentation.permission.RxPermissions;
 import com.scan.barcode.presentation.qr1st.Qr1stAct;
@@ -45,14 +46,23 @@ public class BarcodeAct extends AbsXZingAct {
     @Override
     protected void initializeLayout() {
         super.initializeLayout();
-        binding.abortBt.setOnClickListener(v -> finish());
+        initData();
+
         binding.saveBt.setOnClickListener(v -> {
             if (data != null) {
                 viewModel.insertData(data);
-                finish();
             }
+            finish();
         });
         binding.nextBt.setOnClickListener(v -> handleResult(""));
+        binding.abortBt.setOnClickListener(v -> finish());
+    }
+
+    private void initData() {
+        data = new Data();
+        if (ScanApplication.getInstance().getUser() != null) {
+            data.setUsername(ScanApplication.getInstance().getUser().username);
+        }
     }
 
     @Override
@@ -63,9 +73,11 @@ public class BarcodeAct extends AbsXZingAct {
     @Override
     public void handleResult(String result) {
         if (data == null) {
-            data = new Data();
+            initData();
         }
         data.setBarcode(result);
+        viewModel.insertData(data);
+
         navigateQr1st();
         finish();
     }
@@ -73,6 +85,7 @@ public class BarcodeAct extends AbsXZingAct {
     @Override
     protected void initActionBar() {
         setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     private void navigateQr1st() {

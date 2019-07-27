@@ -61,6 +61,7 @@
         </LinearLayout>
 
         <android.support.design.button.MaterialButton
+            android:id="@+id/logout_bt"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

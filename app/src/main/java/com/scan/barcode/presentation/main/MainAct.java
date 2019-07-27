@@ -17,8 +17,10 @@ import android.widget.Toast;
 import com.scan.barcode.R;
 import com.scan.barcode.data.entities.Data;
 import com.scan.barcode.databinding.MainActBinding;
+import com.scan.barcode.presentation.ScanApplication;
 import com.scan.barcode.presentation.barcode.BarcodeAct;
 import com.scan.barcode.presentation.common.AbsActivity;
+import com.scan.barcode.presentation.login.LoginAct;
 import com.scan.barcode.presentation.permission.RxPermissions;
 
 import javax.inject.Inject;
@@ -62,6 +64,7 @@ public class MainAct extends AbsActivity {
 
         binding.scanBt.setOnClickListener(v -> navigateScanBarcode());
         binding.updateBt.setOnClickListener(v -> viewModel.syncData());
+        binding.logoutBt.setOnClickListener(v -> navigateLogin());
 
         initGetDataFromCache();
         initSyncResponse();
@@ -99,8 +102,13 @@ public class MainAct extends AbsActivity {
                         viewModel.removeAllData();
                         Toast.makeText(this, "Update data success", Toast.LENGTH_LONG).show();
                         stateSyncData(false);
+                    } else {
+                        Toast.makeText(this, "Update data error", Toast.LENGTH_LONG).show();
                     }
+                } else {
+                    Toast.makeText(this, "Update data error", Toast.LENGTH_LONG).show();
                 }
+                progressDialog.dismiss();
             }
         });
     }
@@ -140,5 +148,11 @@ public class MainAct extends AbsActivity {
                         // Do nothing
                     }
                 });
+    }
+
+    private void navigateLogin() {
+        viewModel.emptyUser();
+        ScanApplication.getInstance().setUser(null);
+        startActivity(LoginAct.getIntent(this));
     }
 }

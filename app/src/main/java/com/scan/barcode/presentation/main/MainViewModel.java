@@ -13,6 +13,7 @@ import android.arch.lifecycle.ViewModel;
 import com.scan.barcode.data.common.Resource;
 import com.scan.barcode.data.entities.Data;
 import com.scan.barcode.data.repository.data.DataRepository;
+import com.scan.barcode.data.repository.user.UserRepository;
 import com.scan.barcode.viewmodel.AbsentLiveData;
 
 import java.util.List;
@@ -27,6 +28,7 @@ import javax.inject.Inject;
 public class MainViewModel extends ViewModel {
 
     private DataRepository dataRepository;
+    private UserRepository userRepository;
 
     private MutableLiveData<Boolean> isGetData = new MutableLiveData<>();
     private LiveData<List<Data>> dataFromCache;
@@ -36,7 +38,8 @@ public class MainViewModel extends ViewModel {
     private LiveData<Resource<Integer>> syncDataResponse;
 
     @Inject
-    MainViewModel(DataRepository dataRepository) {
+    MainViewModel(DataRepository dataRepository,
+                  UserRepository userRepository) {
         this.dataRepository = dataRepository;
 
         dataFromCache = Transformations.switchMap(isGetData, input -> {
@@ -52,6 +55,8 @@ public class MainViewModel extends ViewModel {
             }
             return dataRepository.syncData(input);
         });
+
+        this.userRepository = userRepository;
     }
 
     public void getDatas() {
@@ -76,5 +81,9 @@ public class MainViewModel extends ViewModel {
 
     public void removeAllData() {
         dataRepository.emptyData();
+    }
+
+    public void emptyUser() {
+        userRepository.emptyUser();
     }
 }

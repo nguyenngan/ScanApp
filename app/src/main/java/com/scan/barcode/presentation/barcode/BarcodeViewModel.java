@@ -21,13 +21,10 @@ import javax.inject.Inject;
  */
 public class BarcodeViewModel extends ViewModel {
 
-    private final UserRepository userRepository;
     private final DataRepository dataRepository;
 
     @Inject
-    BarcodeViewModel(UserRepository userRepository,
-                     DataRepository dataRepository) {
-        this.userRepository = userRepository;
+    BarcodeViewModel(DataRepository dataRepository) {
         this.dataRepository = dataRepository;
     }
 

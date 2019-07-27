@@ -28,6 +28,8 @@ public class LoginViewModel extends ViewModel {
     private MutableLiveData<User> user = new MutableLiveData<>();
     private LiveData<Resource<User>> userResponse;
 
+    private LiveData<User> cacheUser;
+
     @Inject
     LoginViewModel(UserRepository userRepository) {
         userResponse = Transformations.switchMap(user, input -> {
@@ -36,6 +38,8 @@ public class LoginViewModel extends ViewModel {
             }
             return userRepository.login(input);
         });
+
+        cacheUser = userRepository.getUser();
     }
 
     public LiveData<Resource<User>> getUserResponse() {
@@ -44,5 +48,9 @@ public class LoginViewModel extends ViewModel {
 
     public void setUser(User user) {
         this.user.setValue(user);
+    }
+
+    public LiveData<User> getCacheUser() {
+        return cacheUser;
     }
 }

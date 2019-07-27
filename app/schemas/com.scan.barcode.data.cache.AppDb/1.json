@@ -2,23 +2,23 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "0a5a53c7eca7c137f172c906092138bc",
+    "identityHash": "f7cabb6e2c7d45ee7ecb615e77ee52b0",
     "entities": [
       {
         "tableName": "Data",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`username` TEXT NOT NULL, `barcode` TEXT, `qr1St` TEXT, `qr2nd` TEXT, `time` TEXT, PRIMARY KEY(`username`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`username` TEXT, `barcode` TEXT NOT NULL, `qr1St` TEXT, `qr2nd` TEXT, `time` TEXT, PRIMARY KEY(`barcode`))",
         "fields": [
           {
             "fieldPath": "username",
             "columnName": "username",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "barcode",
             "columnName": "barcode",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "qr1St",
@@ -41,7 +41,7 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "username"
+            "barcode"
           ],
           "autoGenerate": false
         },
@@ -77,7 +77,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"0a5a53c7eca7c137f172c906092138bc\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"f7cabb6e2c7d45ee7ecb615e77ee52b0\")"
     ]
   }
 }

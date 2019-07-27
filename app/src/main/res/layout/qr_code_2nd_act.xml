@@ -3,7 +3,9 @@
   ~ TT-Technologies IT-Service GmbH
   -->
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -23,30 +25,46 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            android:background="#00ffffff"
-            android:minHeight="?attr/actionBarSize" />
+            android:background="#ffffff"
+            android:minHeight="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_close"
+            app:title="">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.button.MaterialButton
+                    android:id="@+id/save_bt"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|end"
+                    android:layout_marginRight="16dp"
+                    android:text="Save"
+                    app:icon="@drawable/ic_save"
+                    tools:ignore="RtlHardcoded" />
+            </FrameLayout>
+        </android.support.v7.widget.Toolbar>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:background="#ffffff"
             android:orientation="horizontal">
 
             <android.support.design.button.MaterialButton
                 android:id="@+id/abort_bt"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Abort" />
-
-            <android.support.design.button.MaterialButton
-                android:id="@+id/save_bt"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Save" />
+                android:layout_gravity="right|end"
+                android:text="Abort"
+                app:icon="@drawable/ic_abort"
+                app:iconGravity="textStart"
+                app:iconPadding="16dp"
+                tools:ignore="RtlHardcoded" />
         </LinearLayout>
     </FrameLayout>
 </layout>

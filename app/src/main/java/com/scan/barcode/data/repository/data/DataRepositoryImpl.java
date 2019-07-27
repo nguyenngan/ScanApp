@@ -7,7 +7,10 @@ package com.scan.barcode.data.repository.data;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
+import android.util.Log;
 
+import com.google.gson.Gson;
+import com.scan.barcode.BuildConfig;
 import com.scan.barcode.data.api.data.DataRestApi;
 import com.scan.barcode.data.api.utils.ApiResponse;
 import com.scan.barcode.data.cache.AppDb;
@@ -43,6 +46,9 @@ public class DataRepositoryImpl implements DataRepository {
 
     @Override
     public void insertData(Data data) {
+        if (BuildConfig.DEBUG) {
+            Log.i(getClass().getName(), new Gson().toJson(data));
+        }
         appExecutors.diskIO().execute(() -> appDb.dataDao().insert(data));
     }
 
@@ -78,7 +84,7 @@ public class DataRepositoryImpl implements DataRepository {
             List<Body> bodies = new ArrayList<>();
             bodies.add(body);
             for (Data d : dataList) {
-                if (d != null) {
+                if (d != null && d.canSync()) {
                     bodies.add(transform(d));
                 }
             }

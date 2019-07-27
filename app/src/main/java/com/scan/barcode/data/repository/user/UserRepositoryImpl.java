@@ -14,6 +14,7 @@ import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterators;
 import com.google.gson.Gson;
+import com.scan.barcode.BuildConfig;
 import com.scan.barcode.data.api.user.UserRestApi;
 import com.scan.barcode.data.api.utils.ApiResponse;
 import com.scan.barcode.data.cache.AppDb;
@@ -56,6 +57,7 @@ public class UserRepositoryImpl implements UserRepository {
             } else if (resource.isSuccessful() && resource.body != null) {
                 List<User> userList = resource.body;
                 if (isExits(userList, input -> Objects.equal(user, input))) {
+                    saveUser(user);
                     result.setValue(Resource.success(user));
                 } else {
                     result.setValue(Resource.error(ERROR, "Response null", null));
@@ -65,6 +67,24 @@ public class UserRepositoryImpl implements UserRepository {
             }
         });
         return result;
+    }
+
+    @Override
+    public void saveUser(User user) {
+        if (BuildConfig.DEBUG) {
+            Log.i(getClass().getName(), new Gson().toJson(user));
+        }
+        appExecutors.diskIO().execute(() -> appDb.userDao().insert(user));
+    }
+
+    @Override
+    public LiveData<User> getUser() {
+        return appDb.userDao().findUser();
+    }
+
+    @Override
+    public void emptyUser() {
+        appExecutors.diskIO().execute(() -> appDb.userDao().emptyUser());
     }
 
     private static <E> boolean isExits(@NonNull List<E> eList, @NonNull Predicate<E> ePredicate) {
@@ -78,4 +98,5 @@ public class UserRepositoryImpl implements UserRepository {
         }
         return -1;
     }
+
 }

@@ -5,6 +5,7 @@
 
 package com.scan.barcode.presentation.qr2nd;
 
+import android.annotation.SuppressLint;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -17,6 +18,9 @@ import com.scan.barcode.data.entities.Data;
 import com.scan.barcode.databinding.QrCode2ndActBinding;
 import com.scan.barcode.presentation.common.AbsXZingAct;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import javax.inject.Inject;
 
 /**
@@ -25,6 +29,8 @@ import javax.inject.Inject;
  * Created on 2019-07-17.
  */
 public class Qr2ndAct extends AbsXZingAct {
+
+    private static final String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
     @Inject
     ViewModelProvider.Factory factory;
@@ -52,13 +58,9 @@ public class Qr2ndAct extends AbsXZingAct {
         if (getIntent() != null) {
             data = getIntent().getParcelableExtra(ARGS);
         }
+
+        binding.saveBt.setOnClickListener(v -> handleResult(""));
         binding.abortBt.setOnClickListener(v -> finish());
-        binding.saveBt.setOnClickListener(v -> {
-            if (data != null) {
-                viewModel.insertData(data);
-                finish();
-            }
-        });
     }
 
     @Override
@@ -70,6 +72,11 @@ public class Qr2ndAct extends AbsXZingAct {
     public void handleResult(String result) {
         if (data != null) {
             data.setQr2nd(result);
+            Calendar c = Calendar.getInstance();
+            @SuppressLint("SimpleDateFormat")
+            SimpleDateFormat df = new SimpleDateFormat(TIME_FORMAT);
+            String formattedDate = df.format(c.getTime());
+            data.setTime(formattedDate);
             viewModel.insertData(data);
         }
         finish();
@@ -78,5 +85,6 @@ public class Qr2ndAct extends AbsXZingAct {
     @Override
     protected void initActionBar() {
         setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 }
