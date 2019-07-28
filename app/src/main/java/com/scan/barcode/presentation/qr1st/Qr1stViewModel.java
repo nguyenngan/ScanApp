@@ -9,7 +9,6 @@ import android.arch.lifecycle.ViewModel;
 
 import com.scan.barcode.data.entities.Data;
 import com.scan.barcode.data.repository.data.DataRepository;
-import com.scan.barcode.data.repository.user.UserRepository;
 
 import javax.inject.Inject;
 

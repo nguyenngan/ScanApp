@@ -5,29 +5,17 @@
 
 package com.scan.barcode.presentation.common;
 
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
-import android.databinding.DataBindingUtil;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.google.zxing.ZXingScannerView;
-import com.scan.barcode.R;
-import com.scan.barcode.databinding.BarcodeActBinding;
-import com.scan.barcode.presentation.barcode.BarcodeViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.inject.Inject;
 
 
 public abstract class AbsXZingAct extends AbsBackActivity implements ZXingScannerView.ResultHandler {

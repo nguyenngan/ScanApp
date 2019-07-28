@@ -12,7 +12,6 @@ import com.google.gson.Gson;
 import com.scan.barcode.BuildConfig;
 import com.scan.barcode.data.api.utils.ApiResponse;
 import com.scan.barcode.data.api.utils.ServiceGenerator;
-import com.scan.barcode.data.common.Resource;
 import com.scan.barcode.data.entities.Body;
 
 import java.util.List;

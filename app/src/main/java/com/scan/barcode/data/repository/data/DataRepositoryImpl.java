@@ -79,6 +79,11 @@ public class DataRepositoryImpl implements DataRepository {
         return result;
     }
 
+    /**
+     * Transform from {@link Data} to {@link Body} by post to serve
+     * @param dataList {@link Data}
+     * @return {@link Body}
+     */
     private List<Body> bodyList(List<Data> dataList) {
         if (dataList != null && !dataList.isEmpty()) {
             List<Body> bodies = new ArrayList<>();

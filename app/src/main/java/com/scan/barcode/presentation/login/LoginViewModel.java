@@ -5,7 +5,6 @@
 
 package com.scan.barcode.presentation.login;
 
-import android.arch.core.util.Function;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;

@@ -8,7 +8,6 @@ package com.scan.barcode.data.api.data;
 import android.arch.lifecycle.LiveData;
 
 import com.scan.barcode.data.api.utils.ApiResponse;
-import com.scan.barcode.data.common.Resource;
 import com.scan.barcode.data.entities.Body;
 
 import java.util.List;

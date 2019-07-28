@@ -3,7 +3,7 @@
   ~ TT-Technologies IT-Service GmbH
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <style name="Halo">
         <item name="android:layout_width">wrap_content</item>
